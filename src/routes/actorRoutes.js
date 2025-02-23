@@ -1,4 +1,5 @@
 const express = require('express');
+const router = express.Router();
 const {
   getAllActors,
   createActor,
@@ -6,16 +7,12 @@ const {
   updateActor,
   deleteActor,
 } = require('../controllers/actorController');
-const router = express.Router();
+const authenticate = require('../middlewares/authMiddleware');
 
-router.get('/getAllActors', getAllActors);
-
-router.post('/createActor', createActor);
-
-router.get('/getActorById/:id', getActorById);
-
-router.put('/updateActor/:id', updateActor);
-
-router.delete('/deleteActor/:id', deleteActor);
+router.get('/getAllActors', authenticate, getAllActors);
+router.post('/createActor', authenticate, createActor);
+router.get('/getActorById/:id', authenticate, getActorById);
+router.put('/updateActor/:id', authenticate, updateActor);
+router.delete('/deleteActor/:id', authenticate, deleteActor);
 
 module.exports = router;
