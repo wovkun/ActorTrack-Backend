@@ -46,14 +46,13 @@ const updatePerformance = async (req, res) => {
     const updatedPerformance = await Performance.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true }
     );
 
     if (!updatedPerformance) {
       return res.status(404).json({ message: 'Performance not found' });
     }
 
-    res.status(200).json(updatedPerformance);
+    res.status(200).json(performance);;
   } catch (err) {
     handleInternalServerError(res, err);
   }
