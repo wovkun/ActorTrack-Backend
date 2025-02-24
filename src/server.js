@@ -7,6 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const actorRoutes = require('./routes/actorRoutes');
 const performanceRoutes = require('./routes/performanceRoutes');
 const contractRoutes = require('./routes/contractRoutes');
+const setupSwagger = require('./config/swagger');
 
 dotenv.config();
 
@@ -17,6 +18,8 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
+
+setupSwagger(app);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
